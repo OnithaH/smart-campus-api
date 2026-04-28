@@ -116,10 +116,8 @@ public class DataStore {
     }
 
     /**
-     * Deletes a room. Returns false if the room does not exist; throws
-     * IllegalStateException
-     * (mapped to RoomNotEmptyException by the caller) if the room still has
-     * sensors.
+     * Deletes a room. Returns false if the room does not exist.
+     * Throws RoomNotEmptyException if the room still has sensors.
      */
     public boolean deleteRoom(String roomId) {
         synchronized (lock) {

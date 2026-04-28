@@ -227,7 +227,7 @@ http://localhost:8080/smart-campus-api/api/v1
 | Method | Endpoint                     | Description                                                            |
 | ------ | ---------------------------- | ---------------------------------------------------------------------- |
 | GET    | `/api/v1/sensors`            | Get all sensors                                                        |
-| GET    | `/api/v1/sensors?type=CO2`   | Filter sensors by type                                                 |
+| GET    | `/api/v1/sensors?type=TEMPERATURE`   | Filter sensors by type                                                 |
 | POST   | `/api/v1/sensors`            | Create a new sensor linked to an existing room                         |
 | GET    | `/api/v1/sensors/{sensorId}` | Get one sensor by ID                                                   |
 | DELETE | `/api/v1/sensors/{sensorId}` | Optional extra endpoint to delete a sensor and unlink it from its room |
