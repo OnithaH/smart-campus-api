@@ -1,6 +1,5 @@
 package com.smartcampus.api.resource;
 
-import com.smartcampus.api.exception.RoomNotEmptyException;
 import com.smartcampus.api.model.Room;
 import com.smartcampus.api.service.DataStore;
 
@@ -27,7 +26,7 @@ public class RoomResource {
     private static final Logger LOGGER = Logger.getLogger(RoomResource.class.getName());
     private final DataStore store = DataStore.getInstance();
 
-    /** GET /rooms  ->  list all rooms */
+    /** GET /rooms -> list all rooms */
     @GET
     public List<Room> listRooms() {
         LOGGER.info("Listing all rooms");
@@ -35,7 +34,7 @@ public class RoomResource {
         return new ArrayList<>(all);
     }
 
-    /** POST /rooms  ->  create a room; returns 201 Created */
+    /** POST /rooms -> create a room; returns 201 Created */
     @POST
     public Response createRoom(@Context UriInfo uriInfo, Room room) {
         Room created = store.createRoom(room);
@@ -44,7 +43,7 @@ public class RoomResource {
         return Response.created(location).entity(created).build();
     }
 
-    /** GET /rooms/{roomId}  ->  get a single room */
+    /** GET /rooms/{roomId} -> get a single room */
     @GET
     @Path("/{roomId}")
     public Response getRoomById(@PathParam("roomId") String roomId) {
@@ -54,8 +53,8 @@ public class RoomResource {
         }
         return Response.ok(room).build();
     }
-    
-    /** PUT /rooms/{roomId}  ->  update a room's name and capacity */
+
+    /** PUT /rooms/{roomId} -> update a room's name and capacity */
     @PUT
     @Path("/{roomId}")
     public Response updateRoom(@PathParam("roomId") String roomId, Room room) {
@@ -68,8 +67,9 @@ public class RoomResource {
     }
 
     /**
-     * DELETE /rooms/{roomId}  ->  delete a room.
-     * Throws {@link RoomNotEmptyException} (409) if the room still has sensors.
+     * DELETE /rooms/{roomId} -> deletes a room.
+     * Returns 204 No Content if the room is deleted.
+     * Throws RoomNotEmptyException if the room still has sensors.
      */
     @DELETE
     @Path("/{roomId}")

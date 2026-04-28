@@ -16,17 +16,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Thread-safety approach:
  * - ConcurrentHashMap is used for room and sensor storage to allow safe
  * concurrent reads and writes.
- * - Sensor readings per sensor are stored in synchronized ArrayList wrappers so
- * that append and
- * retrieval operations on the same list are atomic with respect to each other.
- * - Compound operations that span two collections (e.g., adding a sensor and
- * updating the room's
- * sensorIds list) are protected by a dedicated re entrant lock object to
- * prevent partial updates
- * being visible to concurrent readers.
+ * - Sensor readings are stored in ArrayList objects. Access to each readings
+ * list is protected using synchronized(list) blocks during append and
+ * retrieval operations.
+ * - Compound operations that span two collections, such as adding a sensor and
+ * updating the room's sensorIds list, are protected by a dedicated lock object
+ * to prevent partial updates being visible to concurrent readers.
  * - Auto-increment ID counters use AtomicInteger to guarantee uniqueness under
  * concurrent creates.
  */
+
 public class DataStore {
 
     // ---- Singleton ----

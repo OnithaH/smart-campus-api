@@ -21,7 +21,7 @@ public class Sensor {
     public Sensor() {
     }
 
-    public Sensor(String id, String type, Status status, Double currentValue, String roomId) {
+    public Sensor(String id, String type, Status status, double currentValue, String roomId) {
         this.id = id;
         this.type = type;
         this.status = status;
